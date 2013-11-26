@@ -11,9 +11,12 @@
       (recur (dec n) (not acc)))))
 
 (defn recursive-reverse [coll]
-  (if (empty? coll)
-    coll
-    (cons (last coll) (recursive-reverse (pop coll)))
+  (loop [coll coll
+         reversed '()]
+      (if (empty? coll)
+        reversed
+        (recur (rest coll) (cons (first coll) reversed))
+        )
     )
   )
 
